@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#f6f5f1"/>
+  <meta name="description" content="NextStep Lab — независимый интерактивный эксперимент: сопоставление навыков с учебными профилями IT-направлений и план практики."/>
+  <title>NextStep Lab — интерактивная карта навыков</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+  <div class="announcement"><span class="status-dot"></span> Независимый экспериментальный проект <span class="announcement-right">SKILL MAPPING / PERSONAL LAB</span></div>
+  <header class="site-header"><div class="header-inner">
+    <a class="logo" href="#top" id="home-link" aria-label="NextStep Lab — главная"><span class="brand-symbol">↗</span><span>nextstep<span class="logo-dot">.</span><small>lab</small></span></a>
+    <nav class="top-nav" id="main-navigation" aria-label="Разделы сайта">
+      <button class="nav-link active" data-page="candidate" aria-current="page">Карта навыков</button>
+      <button class="nav-link" data-page="saved">Мои планы <span id="saved-count" class="nav-count">0</span></button>
+      <button class="nav-link" data-page="about">Как это работает</button>
+    </nav>
+    <div class="header-extra"><span class="header-version">independent project · v1.1</span><button class="outline-pill" id="jump-cta">Начать анализ <span>↗</span></button></div>
+    <button class="mobile-menu" id="menu-toggle" aria-label="Открыть меню" aria-controls="main-navigation" aria-expanded="false">☰</button>
+  </div></header>
+
+  <main id="top">
+    <section class="page active" id="page-candidate">
+      <div class="hero container">
+        <div class="hero-topline"><span class="eyebrow"><span class="sparkle">✳</span> КАРЬЕРНЫЕ НАПРАВЛЕНИЯ И НАВЫКИ</span><span class="hero-index">01 / Карта навыков</span></div>
+        <div class="hero-grid"><div>
+          <h1>Узнай, какие навыки<br/><span class="ink-gradient">развивать дальше.</span></h1>
+          <p class="hero-description">Опиши свой опыт и интересы. Сравни их с шестью направлениями в IT, посмотри, какие навыки уже знакомы, и составь короткий план практики.</p>
+          <div class="hero-badges"><span>Без регистрации</span><span>Прозрачный расчёт</span><span>Планы сохраняются на устройстве</span></div>
+        </div><div class="hero-visual" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="visual-center"><span class="visual-glyph">↗</span><span class="visual-text">explore<br/>your skills</span></div><div class="orbit-pill pill-top">observe <span>✷</span></div><div class="orbit-pill pill-bottom">practice <span>↑</span></div><div class="orbit-star">✳</div></div></div>
+      </div>
+
+      <div class="workspace-wrap" id="workspace"><div class="container">
+        <div class="section-heading"><div><span class="eyebrow muted">ИНТЕРАКТИВНАЯ КАРТА</span><h2>Сравни навыки и направления</h2></div><div class="step-counter"><span class="step-counter-current">01</span> / 03</div></div>
+        <div class="workspace-grid">
+          <section class="panel form-panel" aria-labelledby="profile-title"><div class="panel-title-row"><div class="panel-icon">⌘</div><div><div class="overline">ШАГ 01</div><h3 id="profile-title">Опиши свой опыт</h3></div></div>
+            <label class="field-label" for="profile">Навыки, проекты и интересы</label><p class="field-helper">Можно описать учебные проекты, рабочие задачи и инструменты. Не вводи имя, контакты и чувствительные данные.</p>
+            <textarea id="profile" maxlength="5000" spellcheck="true" placeholder="Например: работаю с Python и SQL, проводила интервью, делала проекты с API..." aria-describedby="profile-help"></textarea>
+            <div class="textarea-meta"><span id="char-count">0 / 5000</span><button class="text-button" id="sample-btn">✧ Подставить пример</button></div>
+            <label class="field-label" for="interest">Что сейчас интереснее?</label>
+            <select id="interest"><option value="all">Пока хочу сравнить разные направления</option><option value="Аналитика">Аналитика</option><option value="Исследования">Исследования пользователей</option><option value="Разработка">Разработка</option><option value="Продукт">Продуктовый менеджмент</option></select>
+            <div class="notice"><span>ⓘ</span> Это ориентир для самостоятельного изучения, не проверка квалификации. Результат зависит от полноты описания.</div>
+            <button class="primary-cta" id="analyze-btn"><span>Сравнить направления</span><span class="cta-arrow">↗</span></button><p class="form-error" id="form-error" role="alert" hidden></p>
+            <p class="privacy-line" id="profile-help"><span class="privacy-circle">✓</span> Исходный текст не сохраняется. Планы сохраняются только в этом браузере. AI-комментарий, если включён, передаёт текст внешнему API.</p>
+          </section>
+          <section class="panel result-panel" id="result-panel" aria-label="Результат сопоставления навыков">
+            <div id="empty-result"><div class="result-kicker"><span class="result-kicker-dot"></span> РЕЗУЛЬТАТ СРАВНЕНИЯ <span class="right">ШАГИ 02–03</span></div><div class="preview-icon">✷</div><h3>Здесь появится<br/>твоя карта навыков.</h3><p>После анализа ты увидишь направления, найденные навыки, области для изучения и идеи для практики.</p><div class="preview-skeleton"><div><span></span><i></i></div><div><span></span><i></i></div><div><span></span><i></i></div></div><div class="preview-footnote">Сравнение работает прямо в браузере. Для основного сценария AI API не нужен.</div></div>
+            <div id="actual-result" hidden></div>
+          </section>
+        </div><div class="under-workspace"><span>01 <b>Опиши опыт</b></span><i></i><span>02 <b>Сравни направления</b></span><i></i><span>03 <b>Сохрани план</b></span></div>
+      </div></div>
+      <section class="value-section container"><div class="value-title"><span class="eyebrow muted">ЧТО ТЫ ПОЛУЧИШЬ</span><h2>От списка навыков<br/>к плану практики</h2></div><div class="value-grid"><article><div class="value-number">01 /</div><h3>Текущие навыки</h3><p>Понятный список компетенций, распознанных в твоём описании.</p></article><article><div class="value-number">02 /</div><h3>Сравнение направлений</h3><p>Шесть примерных профилей со взвешенным покрытием навыков.</p></article><article><div class="value-number">03 /</div><h3>Практические задания</h3><p>Небольшие задачи на 14 дней, которые можно сохранить и отмечать по мере выполнения.</p></article></div></section>
+    </section>
+
+    <section class="page" id="page-saved"><div class="container alt-hero"><span class="eyebrow"><span class="sparkle">✳</span> МОЁ ПРОСТРАНСТВО</span><h1>Планы для<br/><span class="ink-gradient">самостоятельной практики.</span></h1><p>Сохраняй интересные направления и отмечай выполненные задачи. Всё хранится локально в твоём браузере без регистрации.</p></div><div class="container saved-layout"><div class="saved-toolbar"><span id="saved-summary">Пока нет сохранённых планов</span><button class="secondary-btn" id="export-plans">Экспорт планов ↓</button></div><div id="saved-list" class="saved-grid"></div></div></section>
+
+    <section class="page" id="page-about"><div class="container alt-hero"><span class="eyebrow"><span class="sparkle">✳</span> О ПРОЕКТЕ</span><h1>Как устроена<br/><span class="ink-gradient">карта навыков.</span></h1><p>NextStep Lab — эксперимент с интерфейсом карьерной навигации и объяснимым сопоставлением компетенций. Это личный исследовательский прототип, а не сервис оценки кандидатов.</p></div>
+      <div class="container product-grid about-grid"><section class="panel"><div class="panel-overline">01 / INPUT</div><h2>Текст о навыках</h2><p class="panel-copy">Пользователь описывает проекты, знания и интересы свободным текстом. Словарь ищет упоминания инструментов и методов. Он не понимает контекст так же, как человек, поэтому распознавание может ошибаться.</p></section>
+        <section class="panel"><div class="panel-overline">02 / COMPARISON</div><h2>Шесть учебных профилей</h2><p class="panel-copy">Каждое направление задано вручную как набор навыков с весами. Процент показывает, какую часть весов удалось обнаружить в тексте. Это не объективная оценка уровня человека и не прогноз трудоустройства.</p></section>
+        <section class="panel"><div class="panel-overline">03 / PRACTICE</div><h2>Задания на две недели</h2><p class="panel-copy">Алгоритм выбирает до трёх навыков для развития и предлагает небольшие практические задачи. Сохранённые планы и отметки выполнения живут только на текущем устройстве.</p></section>
+        <section class="panel"><div class="panel-overline">04 / OPTIONAL AI</div><h2>Дополнительный AI-комментарий</h2><p class="panel-copy">Отдельная функция может сформировать персональное пояснение через языковую модель. Она доступна только при настройке серверного API владельцем сайта; основной расчёт от неё не зависит.</p></section>
+      </div>
+      <div class="container boundaries"><div><span class="eyebrow muted">ПРЕДЕЛЫ МЕТОДА</span><h2>Что важно учитывать</h2><p>Профили ролей придуманы для демонстрации механики. Они не взяты из текущих вакансий и не заменяют консультацию с наставником. Алгоритм может не распознать знакомый навык, если он назван иначе; простое упоминание навыка не доказывает уровень владения им.</p></div><div class="boundaries-foot">LOCAL FIRST <span>·</span> EXPLAINABLE RULES <span>·</span> OPTIONAL LLM</div></div>
+      <div class="container event-panel"><div><span class="eyebrow muted">ТЕХНИЧЕСКИЕ ЗАМЕТКИ</span><h2>Локальный журнал взаимодействий</h2><p>Для изучения пользовательских сценариев записываются только названия действий и их время. Текст профиля не попадает в журнал. Эти записи не отправляются на сервер.</p></div><div class="event-actions"><span id="event-count">0 событий</span><button class="secondary-btn" id="export-events">Экспорт JSON ↓</button><button class="quiet-btn" id="clear-events">Очистить</button></div></div>
+    </section>
+  </main>
+  <footer><div class="container footer-content"><div class="footer-brand"><span class="brand-symbol">↗</span> nextstep<span class="logo-dot">.</span>lab <span class="footer-sep">/</span><span>personal experiment</span></div><div>Независимый проект для изучения карьерных направлений и навыков.</div><div>Explore · Compare · Practice</div></div></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>
